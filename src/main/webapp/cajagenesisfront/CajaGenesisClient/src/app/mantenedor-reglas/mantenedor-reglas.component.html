@@ -1,0 +1,127 @@
+<div class="div-principal-titulo">
+  <h1>Restricciones</h1>
+  <div class="sub-menu">
+      <a class="padding-btn-accion" href="#" (click)="onDownload()">
+        <i class="bi bi-file-earmark-text icon-color-info">Exportar CSV</i>
+      </a>
+    <a *ngIf="this.permisos.agregar" href="#" (click)="clickNuevaRestriccion()" class="icon-color-ok"> <i class="bi bi-plus-circle-fill"></i> Agregar</a>
+    <a *ngIf="this.permisos.salir" href="#" (click)="salir()">Salir</a>
+  </div>
+</div>
+
+<div id="divTabla" *ngIf="this.permisos.consultar">
+  
+  <table class="tbl-BCH table table-hover" id="tblReglas" aria-describedby="myDesc">
+    <thead>
+    <tr>
+      <th (click)="sortTable(0)">Estado</th>
+      <th (click)="sortTable(1)">Tipo Cliente</th>
+      <th (click)="sortTable(2)">Segmento</th>
+      <th (click)="sortTable(3)">Tipo Cuenta</th>
+      <th (click)="sortTable(4)">Límite Abonos</th>
+      <th (click)="sortTable(5)">Moneda</th>
+      <th (click)="sortTable(6)">Transacción</th>
+      <th (click)="sortTable(7)">Misceláneo</th>
+      <th (click)="sortTable(8)">Oficina</th>
+      <th>Acción</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of pagedItems">
+      <td>{{item.nombreEstado}}</td>
+      <td>{{item.nombreTipoCliente}}</td>
+      <td>{{item.nombreSegmento}}</td>
+      <td>{{item.nombreTipoCuenta}}</td>
+      <td>
+        <span class="item-right" *ngIf="item.nombreMoneda.toUpperCase() === 'pesos'.toUpperCase()">CLP {{item.limiteAbonoValue.toString() | number: '1.2-2': 'es' }}</span>
+        <span class="item-right" *ngIf="item.nombreMoneda.toUpperCase() === 'dolares'.toUpperCase()">USD {{item.limiteAbonoValue.toString() | number: '1.2-2': 'es' }}</span>
+        <span class="item-right" *ngIf="item.nombreMoneda.toUpperCase() === 'euros'.toUpperCase()">EUR {{item.limiteAbonoValue.toString() | number: '1.2-2': 'es'}}</span>
+      </td>
+      <td>{{item.nombreMoneda}}</td>
+      <td>{{item.nombreTransaccion}}</td>
+      <td>{{item.nombreMiscelaneo}}</td>
+      <td>{{item.nombreOficina}}</td>
+      <td class="tdIcons">
+        <div class="d-flex flex-row">
+          <a class="padding-btn-accion" href="#" *ngIf="this.permisos.editar" title="Ver / Editar" (click)="clickEditarRestriccion(item.idRegla)">
+            <i class="icono bi bi-pencil-square icon-color-info"></i>
+          </a>
+          <div *ngIf="!(item.creadoPor == this.correoLog)">
+            <a class="padding-btn-accion" href="#" *ngIf="this.permisos.habilitar && item.estado!='Habilitado'" title="Activar" (click)="clickCambioEstadoRestriccion(item.idRegla,'Deshabilitado')"  >
+              <i class="icono bi bi-shield-fill-check text-success"></i>
+            </a>
+            <a class="padding-btn-accion" href="#" *ngIf="this.permisos.habilitar && item.estado=='Habilitado'" title="Desactivar" (click)="clickCambioEstadoRestriccion(item.idRegla,'Habilitado')" >
+              <i class="icono bi bi-shield-slash icon-color-error"></i>
+            </a>
+          </div>
+          <a class="padding-btn-accion" href="#" *ngIf="this.permisos.eliminar" title="Eliminar" (click)="clickEliminarRestriccion(item.idRegla)">
+            <i class="icono bi bi-trash icon-color-error"></i>
+          </a>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <br>
+  <br>
+</div>
+<br>
+<div class="alert alert-warning" *ngIf="!this.permisos.consultar">
+  <i class="bi bi-exclamation-triangle-fill"></i> No tiene permisos para consultar esta información
+</div>
+
+<!-- Modal Mensajería -->
+<div *ngIf="showModalMensaje">
+  <div class="modalOverlay modalLv3"></div>
+  <div class="modalContenedor modalLv3">
+    <div class="modalContenido">
+      <div class="icono" [innerHTML]="modalTipoMensaje"></div>
+      <div class="confirmar-mensaje">{{modalMensaje}}</div>
+      <div class="modal-footer">
+        <div class="div-botones">
+          <button type="button" class="btn btn-primary" (click)="clickCerrarModalMensaje()">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Confirmación -->
+<div *ngIf="showModalConfirmacion">
+  <div class="modalOverlay modalLv2"></div>
+  <div class="modalContenedor modalLv2">
+    <div class="modalContenido">
+
+      <div class="confirmar-icono">
+        <i class="bi bi-question-circle-fill icon-color-info"></i>
+      </div>
+      <div class="confirmar-mensaje">{{confirmMensaje}}</div>
+
+      <div class="modal-footer">
+        <div class="div-botones">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="clickConfirmarAceptacion()">Aceptar</button>
+          <button type="button" class="btn btn-secondary" (click)="clickCerrarModal('confirmacion')">Cancelar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showModalDetalle">
+  <div class="modalOverlay modalLv1"></div>
+  <div class="modalContenedor modalLv1">
+    <div class="modalTitulo">{{tituloModal}}
+      <div class="modalClose" (click)="clickCerrarModal('detalle')">x</div>
+    </div>
+    <div class="modalContenido">
+      <app-detalle-restriccion
+        [regla]="objRestriccionSeleccionada"
+        [listaRestricciones]="listaRestricciones"
+        (objModalPadre)="obtenerDataDesdeHijo($event)"
+        (fnCerrarModalPadre)="clickCerrarModal('detalle')"
+        (fnCondifmarRegistro)="clickConfirmGuardar()"
+      ></app-detalle-restriccion>
+    </div>
+  </div>
+</div>

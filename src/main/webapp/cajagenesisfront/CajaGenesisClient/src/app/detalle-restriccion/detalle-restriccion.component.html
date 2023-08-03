@@ -1,0 +1,109 @@
+<div class="row form-group">
+
+  <div class="col-2"></div>
+  <div class="col-8">
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <label>Tipo Cliente</label>
+        <div *ngIf="!modificarCampos"><input type="text" class="form-control" readonly value="{{regla.nombreTipoCliente}}"></div>
+        <select *ngIf="modificarCampos" class="form-control" [(ngModel)]="regla.tipoDeCliente" (change)="changeValor($event, 'idTipoCliente')">
+          <option value="0">Seleccione</option>
+          <option *ngFor="let reg of listaTiposCliente;" value="{{reg.codigo}}">
+            {{reg.glosa | slice: 0: 100}}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label>Segmento</label>
+        <div *ngIf="!modificarCampos"><input type="text" class="form-control" readonly value="{{regla.nombreSegmento}}"></div>
+        <select *ngIf="modificarCampos" class="form-control" [(ngModel)]="regla.segmento" (change)="changeValor($event, 'idSegmento')">
+          <option value="-1">Seleccione</option>
+          <option *ngFor="let reg of listaSegmentos;" value="{{reg.codigoSegmento}}">
+            {{reg.glosa | slice: 0: 100}}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label>Tipo Cuenta.</label>
+        <div *ngIf="!modificarCampos"><input type="text" class="form-control" readonly value="{{regla.nombreTipoCuenta}}"></div>
+        <select *ngIf="modificarCampos" class="form-control" [(ngModel)]="regla.tipoDeCuenta" (change)="changeValor($event, 'idTipoCuenta')">
+          <option value="">Seleccione</option>
+          <option *ngFor="let reg of listaTiposCuenta;" value="{{reg.token}}">
+            {{reg.glosa | slice: 0: 100}}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label>Límite Abono</label>
+        <input type="text" class="form-control" style="text-align:right;" [(ngModel)]="regla.limiteAbonos" (keyup)="isDecimal($event)" (click)="formatLimiteAbonosClick($event)" (blur)="formatLimiteAbonosBlur($event)" >
+      </div>
+      <div class="col-md-6">
+        <label>Moneda</label>
+        <div *ngIf="!modificarCampos"><input type="text" class="form-control" readonly value="{{regla.nombreMoneda}}"></div>
+        <select *ngIf="modificarCampos" class="form-control" [(ngModel)]="regla.codMoneda" (change)="changeValor($event, 'idMoneda')">
+          <option value="-1">Seleccione</option>
+          <option *ngFor="let reg of listaMonedas;" value="{{reg.codMoneda}}">
+            {{reg.nombre | slice: 0: 5}}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label>Misceláneo</label>
+        <div *ngIf="!modificarCampos"><input type="text" class="form-control" readonly value="{{regla.nombreMiscelaneo}}"></div>
+        <select *ngIf="modificarCampos" class="form-control" [(ngModel)]="regla.miscelaneo" (change)="changeValor($event, 'miscelaneo')">
+          <option value="-1">Seleccione</option>
+          <option *ngFor="let reg of listaMiscelaneos;" value="{{reg.codigoExtendido}}">
+            {{reg.glosaExtendido | slice: 0: 100}}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label>Oficina</label>
+        <div *ngIf="!modificarCampos"><input type="text" class="form-control" readonly value="{{regla.nombreOficina}}"></div>
+        <select *ngIf="modificarCampos" class="form-control" [(ngModel)]="regla.oficina" (change)="changeValor($event, 'idOficina')">
+          <option value="0">Seleccione</option>
+          <option *ngFor="let reg of listaOficinas;" value="{{reg.codoficina}}">
+            {{reg.codoficina + ' - '+ reg.nombre | slice: 0: 100}}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label>Transacción</label>
+        <div *ngIf="!modificarCampos"><input type="text" class="form-control" readonly value="{{regla.nombreTransaccion}}"></div>
+        <select *ngIf="modificarCampos" class="form-control" [(ngModel)]="regla.transaccion" (change)="changeValor($event, 'idTransaccion')">
+          <option value="0">Seleccione</option>
+          <option *ngFor="let reg of listaTransacciones;" value="{{reg.codigoTransaccion}}">
+            {{reg.glosaTransaccion | slice: 0: 100}}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-md-6" *ngIf="regla.idRegla!=0">
+        <label>Estado</label>
+        <div *ngIf="!modificarCampos"><input type="text" class="form-control" readonly value="{{regla.nombreEstado}}"></div>
+        <select *ngIf="modificarCampos" class="form-control" [(ngModel)]="regla.estado" (change)="changeValor($event, 'idEstado')">
+          <option value="Habilitado">Habilitado</option>
+          <option value="Deshabilitado">Deshabilitado</option>
+        </select>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="col-2"></div>
+
+
+
+  <div class="modal-footer">
+    <div class="div-botones">
+      <button type="button" class="btn btn-primary" (click)="clickConfirmarGuardar()">Guardar</button>
+      <button type="button" id="btnCerrarModalHijo" class="btn btn-secondary" (click)="clickCerrarModal('detalle')">Cancelar</button>
+    </div>
+  </div>
+
+</div>
+
+
+

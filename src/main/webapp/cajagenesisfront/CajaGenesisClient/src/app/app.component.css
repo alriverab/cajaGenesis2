@@ -1,0 +1,273 @@
+html,body {
+  height: 100%;
+  overflow-x: hidden;
+}
+br{
+  float:left;
+  clear:both;
+}
+.row{
+  margin:0px;
+  padding:0px;
+}
+.text-center{
+  width:100%;
+  text-align:center;
+}
+
+.div-info-usuario{ }
+.div-info-usuario a{
+  float:right;
+  color:#fff;
+  text-decoration: none;
+  font-size:13px;
+  padding:5px;
+}
+.div-info-usuario .bi{ font-size:20px; }
+.cabecera{
+  background-color:#243c64;
+  color:#fff;
+}
+.cabecera .logo{
+  padding:10px 0px 10px 0px;
+}
+.cabecera .nombre-sistema{
+  padding:10px 0px 10px 0px;
+  font-weight: bold;
+  color:#abc4df;
+}
+.menu-lateral{
+  margin:0px;
+  padding:0px;
+  background-color:#eaeff7;
+  height: 100%;
+}
+.menu-lateral ul{
+  width:100%;
+  margin:0px;
+  padding:0px;
+  list-style: none;
+}
+.menu-lateral ul li{
+  width:100%;
+  margin:0px;
+  padding:10px 0px 10px 10px;
+}
+.menu-lateral li.selected{
+  background-color:#243c64;
+}
+.menu-lateral li.selected a{
+  color:#fff;
+}
+.menu-lateral li a{
+  width:100%;
+  margin:0px;
+  padding:0px;
+  color:#000;
+  text-decoration: none;
+}
+.div-principal{
+  background-color:#fff;
+  height: 100%; padding:10px;
+}
+.div-principal-titulo {
+  width:100%;
+  float:left;
+  clear:both;
+}
+.div-principal-titulo h1{
+  width:auto;
+  float:left;
+  font-size: 20px;
+  font-weight:bold;
+  color:#243c64;
+}
+.div-principal-titulo .sub-menu{
+  width:auto;
+  float:right;
+}
+.div-principal-titulo .sub-menu a{
+  width:auto;
+  float:left;
+  margin:5px;
+  text-decoration: none;
+}
+.div-principal-contenido{
+  width:100%;
+  float:left;
+  clear:both;
+}
+.tbl-BCH{
+  width:100%;
+  float:left;
+  clear:both;
+}
+.tbl-BCH thead th{
+  background-color:#5c9cd4;
+  color:#e9ebf3;
+  font-weight:normal;
+  text-align:center;
+  font-size:13px;
+}
+.tbl-BCH tbody td{
+  background-color:#e9ebf3;
+  color:#646464;
+  font-weight:normal;
+  text-align:center;
+  font-size:13px;
+}
+
+.tbl-BCH tbody tr:nth-child(even) td{
+  background-color: #fff;
+}
+
+.icono{
+  font-size:20px;
+}
+
+.modal-confirmacion{}
+.modal-confirmacion .confirmar-icono{
+  width:100%;
+  float:left;
+  clear:both;
+  text-align:center;
+}
+.modal-confirmacion .confirmar-icono .bi{
+  margin:0px auto;
+  font-size:70px;
+}
+.modal-confirmacion .confirmar-mensaje{
+  width:100%;
+  float:left;
+  clear:both;
+  padding:10px;
+  font-style:italic;
+  text-align:center;
+  color:#243c64;
+}
+.icon-color-info{ color:#5c9cd4; }
+.icon-color-ok{ color:green; }
+.icon-color-alert{ color:orange; }
+.icon-color-error{ color:red; }
+
+table .tdIcons .bi{
+  font-size:18px;
+}
+
+/*--------------------- MODAL ---------------------*/
+.modal-footer{
+  text-align: center;
+}
+.modal-footer .div-botones{
+  width:250px;
+  margin:0px auto;
+}
+.modal-footer .btn{
+  float:none;
+  margin:10px;
+}
+.modal-header.titulo{
+  background-color:#243c64;
+  color:#fff;
+}
+.modal-header.titulo .close{
+  color:#fff;
+  border:0px;
+  background-color:#243c64;
+  font-weight:bold;
+}
+.modalMensajeria{
+  width:100%;
+  height:100%;
+  position:absolute;
+  top:0px;
+  left:0px;
+}
+.modalMensajeria .overlay{
+  background-color:#000;
+  opacity: 0.3;
+  position: absolute;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:100%;
+  overflow: hidden;
+  z-index:10000;
+}
+.modalMensajeria .cajaMensaje{
+  width:300px;
+  height:auto;
+  margin-left:-150px;
+  margin-top:-80px;
+
+  padding:10px;
+  background-color:#fff;
+  position:absolute;
+  top:50%;
+  left:50%;
+
+  z-index:10001;
+  text-align:center;
+  border:1px solid #ccc;
+}
+.modalMensajeria .cajaMensaje .icono{
+  font-size:40px;
+}
+/*--------------------- FIN MODAL ---------------------*/
+.modalOverlay{
+  width:100%;
+  height:100%;
+  position:absolute;
+  top:0; left:0;
+  z-index:10000;
+  background-color:#000;
+  opacity: 0.3;
+}
+.contenedorLoading{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+  z-index:10001;
+  text-align:center;
+  color:#fff;
+  font-weight: bold;
+}
+.modalContenedor{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+  z-index:10001;
+
+  background-color:#fff;
+  border:1px solid #000;
+}
+.modalTitulo{
+  background-color:#243c64;
+  color:#fff;
+  font-weight: bold;
+  padding:5px;
+}
+.modalTitulo .modalClose{
+  color:#fff;
+  border:0px;
+  background-color:#243c64;
+  font-weight:bold;
+  float:right;
+  cursor:pointer;
+}
+.modalContenido{
+  padding:10px;
+  text-align:center;
+}
+.modalContenido .confirmar-icono .bi{
+  margin:0px auto;
+  font-size:70px;
+}
+.modalLv1{ z-index:10001; }
+.modalLv2{ z-index:10002; }
+.modalLv3{ z-index:10003; }
+

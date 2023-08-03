@@ -1,0 +1,78 @@
+<div *ngIf="isLoggedIn()"></div>
+
+<div *ngIf="showModalLoading">
+  <div class="modalOverlay modalLv3"></div>
+  <div class="contenedorLoading modalLv3">
+    <div class="spinner-border text-primary"></div>
+    <br>Cargando...
+  </div>
+</div>
+
+<div class="row" *ngIf="loggedId">
+  <div class="col-md-12 cabecera">
+    <div class="row">
+      <div class="col-md-4">
+        <img class="logo" src="assets/img/logo-bco-chile.png" alt="logo-bco-chile.png">
+      </div>
+      <div class="col-md-1"></div>
+      <div class="col-md-4 nombre-sistema">{{nombreSistema}}</div>
+      <div class="col-md-3 div-info-usuario">
+        <a class="float-right" href="#">
+          <i class="bi bi-person"></i> {{nombreUsuarioLog}} <i>[{{perfilLog}}]</i>
+        </a>
+        <br>
+        <a href="#" (click)="cerrarSesion()" data-bs-toggle="modal" data-bs-target="#confirmacionApp">
+          <i class="bi bi-power icon-color-error"></i> Cerrar Sesión
+        </a>
+        <br>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2 menu-lateral vh-100">
+    <ul>
+      <li (click)="clickMenuPagina('mantenedor-reglas')" [ngClass]="(paginaActual=='mantenedor-reglas')?'selected':''"><a href="#">Mantenedor de Restricciones</a></li>
+      <li><a href="#">Otro link</a></li>
+    </ul>
+  </div>
+  <div class="col-md div-principal vh-100">
+
+    <!-- Modulos a cargar vía condiciones (desde menú lateral) -->
+    <app-home *ngIf="paginaActual=='home'"></app-home>
+    <app-mantenedor-reglas *ngIf="paginaActual=='mantenedor-reglas'" [parentApi]="this"></app-mantenedor-reglas>
+
+  </div>
+
+</div>
+<div class="row" *ngIf="!loggedId">
+  <div class="col-md-5"></div>
+  <div class="col-md-2 text-center">
+    <button (click)="logIn()">Log In</button>
+    <br>
+    No estás logeado
+  </div>
+  <div class="col-md-5"></div>
+</div>
+
+<!-- Modal Confirmación -->
+<div *ngIf="showModalConfirmacion">
+  <div class="modalOverlay modalLv2"></div>
+  <div class="modalContenedor modalLv2">
+    <div class="modalContenido">
+
+      <div class="confirmar-icono">
+        <i class="bi bi-question-circle-fill icon-color-info"></i>
+      </div>
+      <div class="confirmar-mensaje">{{confirmMensaje}}</div>
+
+      <div class="modal-footer">
+        <div class="div-botones">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="clickConfirmarAceptacion()">Aceptar</button>
+          <button type="button" class="btn btn-secondary" (click)="clickCerrarModal('confirmacion')">Cancelar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

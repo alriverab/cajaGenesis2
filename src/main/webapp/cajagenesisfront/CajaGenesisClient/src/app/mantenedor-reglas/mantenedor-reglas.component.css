@@ -1,0 +1,27 @@
+.tbl-BCH th{ width:10%; }
+
+/*Paginator CSS*/
+ul.pagination{
+  width:100%;
+  float:left;
+  clear:both;
+}
+ul.pagination li{
+  padding:5px;
+}
+ul.pagination li a{
+  color:#243c64;
+  cursor:pointer;
+}
+ul.pagination li.active a{
+  color:#243c64;
+  font-weight: bold;
+}
+
+.item-right{
+  float: right;
+}
+
+.padding-btn-accion{
+  padding: 2px;
+}
